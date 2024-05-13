@@ -57,9 +57,9 @@ function validate(values: any, { setErrors }: any) {
         class="mt-2"
       >
         <template v-slot:append-inner>
-          <v-btn color="secondary" aria-label="icon" icon rounded variant="text">
+          <v-btn color="secondary" aria-label="icon" icon="" rounded variant="text">
             <SvgSprite name="custom-eye-invisible" style="width: 20px; height: 20px" v-if="show1 == false" @click="show1 = !show1" />
-            <SvgSprite name="custom-eye" style="width: 20px; height: 20px" v-if="show1 == true" @click="show1 = !show1" />
+            <SvgSprite name="custom-eye" style="width: 20px; height: 20px" v-if="show1" @click="show1 = !show1" />
           </v-btn>
         </template>
       </v-text-field>

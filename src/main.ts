@@ -10,6 +10,8 @@ import VueTablerIcons from 'vue-tabler-icons';
 
 import SvgSprite from '@/components/shared/SvgSprite.vue';
 
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+
 // google-fonts
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -39,16 +41,17 @@ import { createI18n } from 'vue-i18n';
 import messages from '@/utils/locales/messages';
 
 const i18n = createI18n({
-  locale: 'en',
-  messages: messages,
-  silentTranslationWarn: true,
-  silentFallbackWarn: true
+    locale: 'en',
+    messages: messages,
+    silentTranslationWarn: true,
+    silentFallbackWarn: true
 });
 
 const app = createApp(App);
 fakeBackend();
 
 app.use(router);
+app.component('EasyDataTable', Vue3EasyDataTable);
 app.use(PerfectScrollbar);
 app.component('SvgSprite', SvgSprite);
 app.use(createPinia());

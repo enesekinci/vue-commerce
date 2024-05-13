@@ -11,10 +11,10 @@ export type ConfigProps = {
 
 const config: ConfigProps = {
   Sidebar_drawer: true,
-  Customizer_drawer: false,
+  Customizer_drawer: true,
   mini_sidebar: false,
   setHorizontalLayout: false, // Horizontal layout
-  actTheme: 'DefaultTheme',
+  actTheme: 'DarkTheme1',
   fontTheme: 'Inter-var',
   inputBg: false,
   boxed: false

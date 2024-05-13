@@ -17,11 +17,18 @@ export interface menu {
 const sidebarItem: menu[] = [
   { header: 'Starterkit' },
   {
-    title: 'Sample Page',
+    title: 'Dashboard',
     icon: 'custom-sample',
     to: '/'
   },
   { header: 'Others' },
+  {
+    title: 'Brand',
+    icon: 'custom-info-circle',
+    to: '/brands',
+    chipVariant: 'outlined'
+  },
+
   {
     title: 'Menu levels',
     icon: 'custom-level-1',
