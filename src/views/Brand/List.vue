@@ -7,16 +7,16 @@ import type {Header, Item} from "vue3-easy-data-table";
 import 'vue3-easy-data-table/dist/style.css';
 import {customers} from "@/stores/fake-data";
 
-const page = ref({title: 'Customer list'});
+const page = ref({title: 'Markalar'});
 
 const breadcrumbs = shallowRef([
   {
-    title: 'Customer',
+    title: 'Marka',
     disabled: false,
     href: '#'
   },
   {
-    title: 'List',
+    title: 'Liste',
     disabled: true,
     href: '#'
   }
