@@ -7,16 +7,16 @@ import type {Header, Item} from "vue3-easy-data-table";
 import 'vue3-easy-data-table/dist/style.css';
 import {customers} from "@/stores/fake-data";
 
-const page = ref({title: 'Customer list'});
+const page = ref({title: 'Marka listesi'});
 
 const breadcrumbs = shallowRef([
   {
-    title: 'Customer',
+    title: 'Marka',
     disabled: false,
     href: '#'
   },
   {
-    title: 'List',
+    title: 'Liste',
     disabled: true,
     href: '#'
   }
@@ -26,7 +26,7 @@ const searchField = ref('name');
 const searchValue = ref('');
 
 const headers: Header[] = [
-  {text: 'Customer name', value: 'name', sortable: true},
+  {text: 'Marka Adı', value: 'name', sortable: true},
   {text: 'Contact', value: 'date', sortable: true},
   {text: 'Age', value: 'orders', sortable: true},
   {text: 'Country', value: 'location', sortable: true},
@@ -59,7 +59,7 @@ const dialog = ref(false);
                   type="text"
                   variant="outlined"
                   persistent-placeholder
-                  placeholder="Search 200 records..."
+                  placeholder="mark ara..."
                   v-model="searchValue"
                   density="comfortable"
                   hide-details
@@ -71,132 +71,11 @@ const dialog = ref(false);
             </v-col>
             <v-col cols="12" md="3">
               <div class="d-flex ga-2 justify-end">
-                <v-dialog v-model="dialog" class="customer-modal">
-                  <template v-slot:activator="{ props }">
-                    <v-btn variant="flat" color="primary" rounded="md" v-bind="props">
-                      <template v-slot:prepend>
-                        <SvgSprite name="custom-plus" style="width: 14px; height: 14px"/>
-                      </template>
-                      Add customer
-                    </v-btn>
+                <v-btn variant="flat" color="primary" rounded="md" to="/brands/create">
+                  <template v-slot:prepend>
+                    <SvgSprite name="custom-plus" style="width: 14px; height: 14px"/>
                   </template>
-                  <v-card>
-                    <perfect-scrollbar style="max-height: calc(100vh - 48px)">
-                      <v-card-title class="pa-5">
-                        <span class="text-h5">New Customer</span>
-                      </v-card-title>
-                      <v-divider></v-divider>
-                      <v-card-text>
-                        <v-container>
-                          <v-row>
-                            <v-col md="3" cols="12" class="text-center">
-                              <v-avatar size="72" variant="outlined" color="primary" class="dashed">
-                                <img src="@/assets/images/users/avatar-1.png" width="72px" alt="profile"/>
-                                <input type="file" aria-label="upload" class="preview-upload"/>
-                              </v-avatar>
-                            </v-col>
-                            <v-col md="9" cols="12">
-                              <v-row>
-                                <v-col cols="12">
-                                  <v-label class="mb-2">First name</v-label>
-                                  <v-text-field
-                                      single-line
-                                      placeholder="Enter first name"
-                                      hide-details
-                                      variant="outlined"
-                                      required
-                                      density="comfortable"
-                                      rounded="0"
-                                  ></v-text-field>
-                                </v-col>
-                                <v-col cols="12">
-                                  <v-label class="mb-2">Email</v-label>
-                                  <v-text-field
-                                      single-line
-                                      type="email"
-                                      hide-details
-                                      placeholder="Enter customer email"
-                                      required
-                                      variant="outlined"
-                                      density="comfortable"
-                                      rounded="0"
-                                  ></v-text-field>
-                                </v-col>
-                                <v-col cols="12">
-                                  <v-label class="mb-2">Status</v-label>
-                                  <v-autocomplete
-                                      :items="['Single', 'Relationship', 'Complicated']"
-                                      label="Single"
-                                      rounded="0"
-                                      color="primary"
-                                      single-line
-                                      density="comfortable"
-                                      hide-details
-                                      variant="outlined"
-                                  ></v-autocomplete>
-                                </v-col>
-                                <v-col cols="12">
-                                  <v-label class="mb-2">Location</v-label>
-                                  <v-textarea
-                                      placeholder="Enter location"
-                                      hide-details
-                                      rows="2"
-                                      variant="outlined"
-                                      density="comfortable"
-                                  ></v-textarea>
-                                </v-col>
-                                <v-col cols="12">
-                                  <div class="d-flex justify-space-between ga-2">
-                                    <div class="pb-4">
-                                      <h6 class="text-subtitle-1 mb-1">Make Contact Info Public</h6>
-                                      <p class="text-caption text-lightText mb-0 mr-5">
-                                        Means that anyone viewing your profile will be able to see your contacts details
-                                      </p>
-                                    </div>
-                                    <v-switch
-                                        color="primary"
-                                        aria-label="switch"
-                                        class="switchRight"
-                                        :model-value="true"
-                                        hide-details
-                                    ></v-switch>
-                                  </div>
-                                  <v-divider></v-divider>
-                                </v-col>
-                                <v-col cols="12" class="pt-0">
-                                  <div class="d-flex justify-space-between ga-2">
-                                    <div class="pb-4 pt-1">
-                                      <h6 class="text-subtitle-1 mb-1">Available to hire</h6>
-                                      <p class="text-caption text-lightText mb-0 mr-5">
-                                        Toggling this will let your teammates know that you are available for acquiring
-                                        new projects
-                                      </p>
-                                    </div>
-                                    <v-switch
-                                        color="primary"
-                                        aria-label="switch"
-                                        class="switchRight"
-                                        :model-value="false"
-                                        hide-details
-                                    ></v-switch>
-                                  </div>
-                                </v-col>
-                              </v-row>
-                            </v-col>
-                          </v-row>
-                        </v-container>
-                      </v-card-text>
-                      <v-divider></v-divider>
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="error" rounded="md" variant="text" @click="dialog = false"> Cancel</v-btn>
-                        <v-btn color="primary" rounded="md" variant="flat" @click="dialog = false"> Add</v-btn>
-                      </v-card-actions>
-                    </perfect-scrollbar>
-                  </v-card>
-                </v-dialog>
-                <v-btn icon="" variant="text" aria-label="download" rounded="md" size="small">
-                  <SvgSprite name="custom-document-2" class="text-lightText" style="width: 24px; height: 24px"/>
+                  Add customer
                 </v-btn>
               </div>
             </v-col>
@@ -221,7 +100,8 @@ const dialog = ref(false);
               </div>
             </template>
             <template #item-status="{ status }">
-              <v-chip :color="['success','error','info'][status]" size="small" :text="['Relationship', 'Complicated', 'Single'][status]"/>
+              <v-chip :color="['success','error','info'][status]" size="small"
+                      :text="['Relationship', 'Complicated', 'Single'][status]"/>
             </template>
             <template #item-operation="item">
               <div class="operation-wrapper">
