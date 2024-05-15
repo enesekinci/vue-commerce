@@ -12,7 +12,7 @@ const AuthRoutes = {
     },
     {
       name: 'Login',
-      path: '/auth/login1',
+      path: '/auth/login',
       component: () => import('@/views/authentication/auth1/LoginPage1.vue')
     },
     {

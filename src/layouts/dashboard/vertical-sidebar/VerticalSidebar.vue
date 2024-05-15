@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue';
-import { useCustomizerStore } from '@/stores/customizer';
+import {shallowRef} from 'vue';
+import {useCustomizerStore} from '@/stores/customizer';
 import sidebarItems from './sidebarItem';
 
 import NavGroup from './NavGroup/NavGroup.vue';
@@ -15,20 +15,20 @@ const sidebarMenu = shallowRef(sidebarItems);
 
 <template>
   <v-navigation-drawer
-    left
-    v-model="customizer.Sidebar_drawer"
-    elevation="0"
-    rail-width="60"
-    mobile-breakpoint="lg"
-    app
-    class="leftSidebar"
-    :rail="customizer.mini_sidebar"
-    expand-on-hover
+      left
+      v-model="customizer.Sidebar_drawer"
+      elevation="0"
+      rail-width="60"
+      mobile-breakpoint="lg"
+      app
+      class="leftSidebar"
+      :rail="customizer.mini_sidebar"
+      expand-on-hover
   >
     <!---Logo part -->
 
     <div class="pa-5">
-      <Logo />
+      <Logo/>
     </div>
     <!-- ---------------------------------------------- -->
     <!---Navigation -->
@@ -36,20 +36,20 @@ const sidebarMenu = shallowRef(sidebarItems);
     <perfect-scrollbar class="scrollnavbar">
       <v-list aria-busy="true" class="px-2" aria-label="menu list">
         <!---Menu Loop -->
-        <template v-for="(item, i) in sidebarMenu" :key="i">
+        <template v-for="(item, index) in sidebarMenu" :key="index">
           <!---Item Sub Header -->
-          <NavGroup :item="item" v-if="item.header" :key="item.title" />
+          <NavGroup :item="item" v-if="item.header" :key="item.title"/>
           <!---Item Divider -->
-          <v-divider class="my-3" v-else-if="item.divider" />
+          <v-divider class="my-3" v-else-if="item.divider"/>
           <!---If Has Child -->
-          <NavCollapse class="leftPadding" :item="item" :level="0" v-else-if="item.children" />
+          <NavCollapse class="leftPadding" :item="item" :level="0" v-else-if="item.children"/>
           <!---Single Item-->
-          <NavItem :item="item" v-else />
+          <NavItem :item="item" v-else/>
           <!---End Single Item-->
         </template>
       </v-list>
       <div class="pa-4">
-        <ExtraBox />
+        <!--  <ExtraBox />-->
       </div>
     </perfect-scrollbar>
   </v-navigation-drawer>
